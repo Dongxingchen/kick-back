@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang ='en'>
+<meta charset = 'UTF-8'>
+<title></title>
+<style>
+#canvas {
+   border: 1 px solid #000;
+}
+</style>
+</head>
+<body>
+    <canvas id= 'canvas' width = '600' height = '400' ></canvas>
+</body>
+<script>
+   var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var x=200;
+    var y=300;
+    // 初始水平速度和垂直速度
+    var speedX=2;
+    var speedY=1;
+    function draw(){
+       context.clearRect(0, 0, canvas.width, canvas.height);
+        
+        x+=speedX;
+        y+=speedY;
+        var radius=20;
+    //  判断小球边界
+    if(x<=0||x>=canvas.width-radius){
+        speedX=-speedX;
+    }
+    if(y<=0||y>=canvas.height-20){
+        speedY=-speedY;
+    }
+    context.beginPath();
+    context.fillStyle='red';
+    context.arc(x, y, radius, 0, Math.PI*2);
+    context.shadowOffsetX=10;
+    context.shadowOffsetY=10;
+    context.shadowBlur=20;
+    context.shadowColor='black';
+    
+    
+    
+    
+    context.fill();
+    window.requestAnimationFrame(draw);
+    }
+draw();
+</script>
+</html>
